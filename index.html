@@ -197,7 +197,7 @@
   .cert-caption{padding:16px 20px; font-size:13.5px; color:var(--text-soft); text-align:center;}
 
   /* GALLERY */
-  .gallery-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:24px;}
+  .gallery-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
   .ga-card{
     background:var(--white); border-radius:var(--radius); overflow:hidden;
     border:1px solid rgba(90,70,53,0.08);
@@ -268,6 +268,11 @@
     justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:13px; color:var(--brown-mid);
   }
   .placeholder-note{font-size:12px; color:#b5895a; margin-top:4px;}
+
+  /* TABLET */
+  @media(max-width:1100px){
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+  }
 
   /* MOBILE */
   @media(max-width:900px){
@@ -470,13 +475,6 @@
           <div class="cell" data-lightbox="assets/img/after-3.jpg" data-tag="После"><span class="ga-tag after">После</span><img src="assets/img/after-3.jpg" alt="После лечения"></div>
         </div>
         <div class="ga-caption"><span>Протезирование, полная реабилитация</span><span class="ga-num">Case 03</span></div>
-      </div>
-      <div class="ga-card">
-        <div class="ga-imgs">
-          <div class="cell" data-lightbox="assets/img/before-4.jpg" data-tag="До"><span class="ga-tag">До</span><img src="assets/img/before-4.jpg" alt="До лечения"></div>
-          <div class="cell" data-lightbox="assets/img/after-4.jpg" data-tag="После"><span class="ga-tag after">После</span><img src="assets/img/after-4.jpg" alt="После лечения"></div>
-        </div>
-        <div class="ga-caption"><span>Виниры и отбеливание</span><span class="ga-num">Case 04</span></div>
       </div>
     </div>
   </div>
