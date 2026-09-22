@@ -99,28 +99,21 @@
     position:relative; display:flex; align-items:flex-end; justify-content:center;
   }
   .hero-photo-wrap{
-    position:relative; width:100%; height:100%;
+    position:relative; width:100%; height:100%; min-height:440px;
     -webkit-mask-image:linear-gradient(to bottom, black 85%, transparent 100%);
     mask-image:linear-gradient(to bottom, black 85%, transparent 100%);
   }
-  .hero-slider{position:relative; width:100%; height:100%; min-height:400px;}
-  .hero-slide{
-    position:absolute; inset:0; opacity:0; transition:opacity 1s ease;
+  .hero-placeholder{
+    position:absolute; inset:16px 16px 0 16px;
+    border:1.5px dashed rgba(246,241,232,0.3);
+    border-radius:20px 20px 0 0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:14px; text-align:center; padding:32px;
+    background:rgba(246,241,232,0.04);
   }
-  .hero-slide.active{opacity:1;}
-  .hero-slide img{
-    width:100%; height:100%; object-fit:cover; object-position:center 30%;
-    max-height:640px;
-  }
-  .hero-dots{
-    position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
-    display:flex; gap:8px; z-index:3;
-  }
-  .hero-dot{
-    width:8px; height:8px; border-radius:50%; background:rgba(246,241,232,0.4);
-    cursor:pointer; transition:background .25s, transform .25s; border:none; padding:0;
-  }
-  .hero-dot.active{background:var(--accent); transform:scale(1.3);}
+  .hero-placeholder svg{opacity:0.5;}
+  .hero-placeholder .ph-title{font-family:'Cormorant Garamond',serif; font-style:italic; font-size:20px; color:#d9cfc0;}
+  .hero-placeholder .ph-sub{font-size:13px; color:#a89a88; max-width:220px; line-height:1.5;}
 
   /* trust bar */
   .trustbar{
@@ -315,13 +308,14 @@
     </div>
     <div class="hero-photo">
       <div class="hero-photo-wrap">
-        <div class="hero-slider" id="heroSlider">
-          <div class="hero-slide active"><img src="assets/img/after-4.jpg" alt="Результат работы Наргизы Исматовой"></div>
-          <div class="hero-slide"><img src="assets/img/after-1.jpg" alt="Результат работы Наргизы Исматовой"></div>
-          <div class="hero-slide"><img src="assets/img/after-3.jpg" alt="Результат работы Наргизы Исматовой"></div>
-          <div class="hero-slide"><img src="assets/img/after-2.jpg" alt="Результат работы Наргизы Исматовой"></div>
+        <div class="hero-placeholder">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="8" r="4" stroke="#f6f1e8" stroke-width="1.4"/>
+            <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" stroke="#f6f1e8" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          <div class="ph-title">Фото Наргизы</div>
+          <div class="ph-sub">Здесь будет портретное фото врача</div>
         </div>
-        <div class="hero-dots" id="heroDots"></div>
       </div>
     </div>
   </div>
@@ -497,35 +491,6 @@
 </footer>
 
 <script>
-  // Hero slider
-  (function(){
-    const slides = document.querySelectorAll('#heroSlider .hero-slide');
-    const dotsWrap = document.getElementById('heroDots');
-    let current = 0;
-    let timer;
-
-    slides.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', 'Слайд ' + (i + 1));
-      dot.addEventListener('click', () => goTo(i));
-      dotsWrap.appendChild(dot);
-    });
-    const dots = dotsWrap.querySelectorAll('.hero-dot');
-
-    function goTo(i){
-      slides[current].classList.remove('active');
-      dots[current].classList.remove('active');
-      current = i;
-      slides[current].classList.add('active');
-      dots[current].classList.add('active');
-      resetTimer();
-    }
-    function next(){ goTo((current + 1) % slides.length); }
-    function resetTimer(){ clearInterval(timer); timer = setInterval(next, 4500); }
-    if (slides.length > 1) resetTimer();
-  })();
-
   // Gallery lightbox
   (function(){
     const lightbox = document.getElementById('lightbox');
