@@ -183,6 +183,19 @@
   }
   .tl-text{font-size:14.5px; color:#e7ded0; line-height:1.55; padding-top:2px;}
 
+  /* CERTIFICATES */
+  .cert-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .cert-card{
+    background:var(--white); border-radius:var(--radius); overflow:hidden;
+    border:1px solid rgba(90,70,53,0.08); cursor:zoom-in;
+    transition:transform .25s, box-shadow .25s;
+  }
+  .cert-card:hover{transform:translateY(-6px); box-shadow:0 20px 40px rgba(90,70,53,0.14);}
+  .cert-card .cert-img-wrap{aspect-ratio:3/4; overflow:hidden; background:var(--cream-2);}
+  .cert-card img{width:100%; height:100%; object-fit:cover; transition:transform .4s ease;}
+  .cert-card:hover img{transform:scale(1.05);}
+  .cert-caption{padding:16px 20px; font-size:13.5px; color:var(--text-soft); text-align:center;}
+
   /* GALLERY */
   .gallery-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:24px;}
   .ga-card{
@@ -262,6 +275,7 @@
     .why-grid{grid-template-columns:repeat(2,1fr);}
     .about-inner{grid-template-columns:1fr; padding:56px 20px;}
     .gallery-grid{grid-template-columns:1fr;}
+    .cert-grid{grid-template-columns:1fr 1fr;}
     .hero-inner{grid-template-columns:1fr; min-height:auto;}
     .hero-photo{order:-1; height:320px;}
     .hero-text{padding:40px 0;}
@@ -286,6 +300,7 @@
       <a href="#about">Обо мне</a>
       <a href="#why">Преимущества</a>
       <a href="#gallery">Работы</a>
+      <a href="#certificates">Сертификаты</a>
       <a href="#contacts">Контакты</a>
     </nav>
     <a href="#contacts" class="nav-cta">Записаться</a>
@@ -403,6 +418,30 @@
   </div>
 </section>
 
+<section class="section" id="certificates">
+  <div class="container">
+    <div class="section-head center">
+      <span class="section-tag">Квалификация</span>
+      <h2 class="section-title">Подтверждённые <em>сертификаты</em></h2>
+      <p class="section-sub">Документы об образовании и квалификационной категории, выданные Министерством здравоохранения Республики Узбекистан.</p>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card" data-lightbox="assets/img/cert-1.jpg" data-tag="Сертификат">
+        <div class="cert-img-wrap"><img src="assets/img/cert-1.jpg" alt="Сертификат — ортопедическая стоматология"></div>
+        <div class="cert-caption">Сертификат по конструкциям тиш протезлари, ТашИУВ, 2016</div>
+      </div>
+      <div class="cert-card" data-lightbox="assets/img/cert-2.jpg" data-tag="Сертификат">
+        <div class="cert-img-wrap"><img src="assets/img/cert-2.jpg" alt="Сертификат — протезирование зубных рядов"></div>
+        <div class="cert-caption">Сертификат по протезированию зубных рядов, ТашИУВ, 2016</div>
+      </div>
+      <div class="cert-card" data-lightbox="assets/img/cert-3.jpg" data-tag="Сертификат">
+        <div class="cert-img-wrap"><img src="assets/img/cert-3.jpg" alt="Сертификат о квалификационной категории"></div>
+        <div class="cert-caption">Вторая квалификационная категория, Минздрав Узбекистана, 2016</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="gallery">
   <div class="container">
     <div class="section-head center">
@@ -498,7 +537,7 @@
     const lightboxTag = document.getElementById('lightboxTag');
     const closeBtn = document.getElementById('lightboxClose');
 
-    document.querySelectorAll('.ga-imgs .cell').forEach(cell => {
+    document.querySelectorAll('.ga-imgs .cell, .cert-card').forEach(cell => {
       cell.addEventListener('click', () => {
         lightboxImg.src = cell.getAttribute('data-lightbox');
         lightboxTag.textContent = cell.getAttribute('data-tag');
